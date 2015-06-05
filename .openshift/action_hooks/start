@@ -12,7 +12,7 @@ fi
 memory_total=`free -m | grep Mem | awk '{print $2}'`;
 [ -z "$XMX" ] && { let XMX=memory_total-35; XMX="${XMX}M"; }
 
-CMD="java -Xms${XMS} -Xmx${XMX} -Xmn${XMN} -jar $JAVA_OPTS start.jar -Djetty.host=$OPENSHIFT_JETTY9_APP_HOST -Djetty.port=$OPENSHIFT_JETTY9_APP_PORT ${GC} ${confresult}"
+CMD="java -Xms${XMS} -Xmx${XMX} -Xmn${XMN}  ${GC} ${confresult} -jar $JAVA_OPTS start.jar -Djetty.host=$OPENSHIFT_JETTY9_APP_HOST -Djetty.port=$OPENSHIFT_JETTY9_APP_PORT"
 
 nohup $CMD > $OPENSHIFT_JETTY9_LOG_DIR/server.log 2>&1 &
 
