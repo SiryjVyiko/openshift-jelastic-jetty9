@@ -1,13 +1,11 @@
 #!/bin/bash
 
-# Ensure the previous startup succeeded and this actually exists.
-if [ -d "${OPENSHIFT_JETTY9_DIR}/versions/9.1.3" ]; then
-    cd ${OPENSHIFT_JETTY9_DIR}/versions/9.1.3/
+jetty_pid=`ps aux|grep java|grep jetty|grep -v grep|awk '{print $2}'`;
 
-    # Ensure the process is actually running.
-    if ps -p `cat jetty.pid` > /dev/null
+    if [ -n "$jetty_pid" ] 
     then
-       kill `cat jetty.pid` && echo "Jetty9 stopped successfully"
+       kill $jetty_pid && echo "Jetty9 stopped successfully" || echo "Jetty9 stop failed"
+    else 
+	echo "Jetty9 already stopped";
     fi
-fi
 
