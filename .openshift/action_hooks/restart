@@ -1,5 +1,6 @@
 #!/bin/bash
 
 sudo service cartridge stop;
+sleep 5;
 sudo service cartridge start;
 
