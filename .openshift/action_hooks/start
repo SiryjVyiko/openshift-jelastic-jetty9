@@ -1,9 +1,11 @@
 #!/bin/bash
 
-cd ${OPENSHIFT_JETTY9_DIR}/versions/9.1.3/
+. /etc/jelastic/environment
 
-if [ -x /opt/repo/versions/9.1.3/bin/variablesparser.sh ]; then
-    . /opt/repo/versions/9.1.3/bin/variablesparser.sh
+cd ${OPENSHIFT_JETTY9_DIR}/versions/${Version}/
+
+if [ -x /opt/repo/versions/${Version}/bin/variablesparser.sh ]; then
+    . /opt/repo/versions/${Version}/bin/variablesparser.sh
 fi
 
 [ -z "$XMS" ] && { XMS=32M; }
